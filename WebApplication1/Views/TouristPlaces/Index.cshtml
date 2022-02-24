@@ -1,0 +1,40 @@
+﻿@model IEnumerable<OA.Web.Models.TouristViewModel>
+
+<div class="container">
+    <h2>Tourist Place</h2>
+    <div>
+        <form asp-action="Index" class="col-md-6">
+            <input type="text" class="col-md-6" name="nameSearch" value="@ViewBag.search" />
+            <p class="hidden"> <input type="text" name="flag" value="1" /></p>
+            <input class="col-md-4" type="submit" value="Search" />
+        </form>
+        <p>
+            @Html.ActionLink("Create", "Create", new { sortState = ViewBag.NameSortParm, name_search = ViewBag.search })
+        </p>
+    </div>
+    <div>
+        <form>
+            <table border="1">
+                <tr>
+                    <th class="text-center col-md-3">@Html.DisplayNameFor(x => x.Name)</th>
+                    <th class="text-center col-md-3">Country</th>
+                    <th class="text-center col-md-3">@Html.DisplayNameFor(x => x.Image)</th>
+                    <th class="text-center col-md-3"> @Html.ActionLink("Rating", "Index", new { sortState = (ViewBag.NameSortParm) == "A" ? "B" : "A" })</th>
+                    <th class="text-center col-md-3"></th>
+                </tr>
+
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <th class="col-md-2 text-center"> @Html.DisplayFor(x => i.Name) </th>
+                        <th class="col-md-2 text-center"> @Html.DisplayFor(x => i.Location) </th>
+                        <th class="col-md-4 text-center"> <img class="center-block" style="width : 200px ; height : auto" src="data:image/jpeg;base64,@i.Image" /> </th>
+                        <th class="col-md-2 text-center"> @Html.DisplayFor(x => i.Rating) </th>
+                        @*<th class="col-md-4 text-center"> <a asp-action="Edit" asp-route-id="@i.Id"> Edit </a>  <a asp-action="Delete" style="padding-left : 20px" asp-route-id="@i.Id"> Delete </a> </th>*@
+                        <th class="col-md-4 text-center"> @Html.ActionLink("Edit", "Edit", new { sortState = ViewBag.NameSortParm, id = @i.Id, name_search = ViewBag.search })  @Html.ActionLink("Delete", "Delete", new { sortState = ViewBag.NameSortParm, id = @i.Id, name_search = ViewBag.search }) </th>
+                    </tr>
+                }
+            </table>
+        </form>
+    </div>
+</div>

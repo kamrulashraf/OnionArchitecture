@@ -1,0 +1,29 @@
+﻿@model OA.Web.Models.TouristViewModel
+@{
+}
+
+<div>
+    <p>Welcome</p>
+
+    <dl class="dl-horizontal">
+        <dt>@Html.DisplayNameFor(model => model.Name)</dt>
+        <dd>@Html.DisplayFor(modle => modle.Name)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Address)</dt>
+        <dd>@Html.DisplayFor(modle => modle.Address)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Location)</dt>
+        <dd>@Html.DisplayFor(modle => modle.Location)</dd>
+        <dt>@Html.DisplayNameFor(model => model.Image)</dt>
+        <dd><img class="col-md-3" src="data:image/jpeg;base64,@Model.Image" /></dd>
+        <dt>@Html.DisplayNameFor(model => model.Rating)</dt>
+        <dd>@Html.DisplayFor(modle => modle.Rating)</dd>
+    </dl>
+    <div style="padding-left: 8%">
+        <form asp-action="Delete">
+            <input class="hidden" type="text" name="sortState" value="@ViewBag.NameSortParm" />
+            <input class="hidden" type="text" name="name_search" value="@ViewBag.search" />
+            <button type="submit">confirm</button>
+        </form>
+        <a asp-action="Index">Back to TouristPlace</a>
+    </div>
+
+</div>
